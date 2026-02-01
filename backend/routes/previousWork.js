@@ -36,8 +36,10 @@ router.post('/', protect, admin, async (req, res) => {
         });
 
         const createdItem = await item.save();
+        console.log(`✅ Success: Previous work item created: ${createdItem._id}`);
         res.status(201).json(createdItem);
     } catch (error) {
+        console.error(`❌ Error creating work item:`, error);
         res.status(400).json({ message: 'Invalid data', error: error.message });
     }
 });

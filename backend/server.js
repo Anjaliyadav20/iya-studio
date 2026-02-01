@@ -29,7 +29,17 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(express.json({ limit: '15mb' }));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+
+// Logging for large payloads
+app.use((req, res, next) => {
+  if (req.method === 'POST' || req.method === 'PATCH') {
+    const size = JSON.stringify(req.body).length;
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url} - Body size: ${(size / 1024 / 1024).toFixed(2)} MB`);
+  }
+  next();
+});
 
 // Routes
 app.use('/api/auth', authRoutes);
