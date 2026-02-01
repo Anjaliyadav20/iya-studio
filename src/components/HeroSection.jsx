@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import body from "../assets/slider2_neongirl.jpg";
 import slider from "../assets/slider3.jpg";
 import blue from "../assets/blue.jpg";
-import glam from "../assets/slider5_glitterhair.png";
+import glam from "../assets/glitter_hair.jpg";
 
 const SLIDER_IMAGES = [
   { src: blue, alt: "Tattoo art" },
@@ -35,8 +35,8 @@ const HeroSection = () => {
     <section className="relative min-h-screen flex items-center overflow-hidden pt-24 bg-[#0a0a0a] text-foreground">
 
       {/* Background Decorative Blurs - Premium Glows */}
-      <div className="fixed top-[-10%] right-[-5%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] pointer-events-none opacity-40 z-0" />
-      <div className="fixed bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[130px] pointer-events-none opacity-30 z-0" />
+      <div className="fixed top-[-10%] right-[-5%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[80px] pointer-events-none opacity-40 z-0" />
+      <div className="fixed bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[70px] pointer-events-none opacity-30 z-0" />
 
       {/* Subtle Mesh Grid Backdrop */}
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none z-0" />
@@ -140,15 +140,16 @@ const HeroSection = () => {
               <div className="absolute -inset-1 bg-gradient-to-tr from-primary/20 via-transparent to-secondary/20 rounded-[3rem] blur-xl opacity-50" />
 
               <div className="relative h-full w-full rounded-[2.5rem] overflow-hidden border border-white/10 bg-[#111] shadow-2xl group">
-                <AnimatePresence mode="wait">
+                <AnimatePresence>
                   <motion.img
                     key={slideIndex}
-                    initial={{ opacity: 0, scale: 1.1 }}
+                    initial={{ opacity: 0, scale: 1.05 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
                     src={SLIDER_IMAGES[slideIndex].src}
                     alt={SLIDER_IMAGES[slideIndex].alt}
+                    style={{ willChange: "transform, opacity" }}
                     className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
                   />
                 </AnimatePresence>
