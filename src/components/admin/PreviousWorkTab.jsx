@@ -63,6 +63,7 @@ const PreviousWorkTab = () => {
         event_type: "other",
         location: "",
         event_date: "",
+        media_url: "",
     });
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [previewUrls, setPreviewUrls] = useState([]);
@@ -74,7 +75,7 @@ const PreviousWorkTab = () => {
             setItems(data || []);
         } catch (error) {
             console.error("Error fetching previous work:", error);
-            toast.error("Failed to load previous work");
+            toast.error(`Load Failed: ${error.message || "Server Error"}`);
         } finally {
             setLoading(false);
         }
@@ -138,8 +139,13 @@ const PreviousWorkTab = () => {
             toast.error("Please enter a title");
             return;
         }
-        if (!formData.media_urls || formData.media_urls.length === 0) {
-            toast.error("Please select or add at least one image/video");
+        const media_urls = [...(formData.media_urls || [])];
+        if (formData.media_url && formData.media_url.trim()) {
+            media_urls.push(formData.media_url.trim());
+        }
+
+        if (media_urls.length === 0) {
+            toast.error("Please select files or paste an image URL");
             return;
         }
         try {
@@ -147,7 +153,7 @@ const PreviousWorkTab = () => {
             await apiClient.createPreviousWork({
                 title,
                 description: formData.description || "",
-                media_urls: formData.media_urls,
+                media_urls: media_urls,
                 media_type: formData.media_type,
                 service_type: formData.service_type || undefined,
                 is_featured: formData.is_featured,
@@ -167,6 +173,7 @@ const PreviousWorkTab = () => {
                 event_type: "other",
                 location: "",
                 event_date: "",
+                media_url: "",
             });
             setSelectedFiles([]);
             setPreviewUrls([]);
@@ -287,6 +294,27 @@ const PreviousWorkTab = () => {
                                                 />
                                             </label>
                                         </div>
+
+                                        {/* URL Alternative */}
+                                        {previewUrls.length === 0 && (
+                                            <div className="space-y-3">
+                                                <div className="relative">
+                                                    <div className="absolute inset-0 flex items-center">
+                                                        <div className="w-full border-t border-orange-500/20" />
+                                                    </div>
+                                                    <div className="relative flex justify-center">
+                                                        <span className="px-3 bg-card text-xs font-semibold text-orange-500 uppercase tracking-wider">Or Paste Image/Video URL</span>
+                                                    </div>
+                                                </div>
+                                                <Input
+                                                    id="media_url"
+                                                    value={formData.media_url}
+                                                    onChange={(e) => setFormData({ ...formData, media_url: e.target.value })}
+                                                    placeholder="https://... (e.g. Instagram or Google Image link)"
+                                                    className="bg-background/50 border-orange-500/30 focus:border-orange-500"
+                                                />
+                                            </div>
+                                        )}
 
                                         <div className="grid grid-cols-2 gap-4">
                                             <div className="space-y-2">

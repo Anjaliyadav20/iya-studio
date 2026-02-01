@@ -69,7 +69,7 @@ const GalleryTab = () => {
       setItems(data || []);
     } catch (error) {
       console.error("Error fetching gallery:", error);
-      toast.error("Failed to load gallery");
+      toast.error(`Load Failed: ${error.message || "Server Error"}`);
     } finally {
       setLoading(false);
     }

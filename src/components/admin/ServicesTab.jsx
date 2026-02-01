@@ -78,7 +78,7 @@ const ServicesTab = () => {
       setServices(data || []);
     } catch (error) {
       console.error("Error fetching services:", error);
-      toast.error("Failed to load services");
+      toast.error(`Load Failed: ${error.message || "Server Error"}`);
     } finally {
       setLoading(false);
     }

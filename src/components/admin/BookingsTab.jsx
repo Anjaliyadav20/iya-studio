@@ -47,7 +47,7 @@ const BookingsTab = () => {
       setBookings(data || []);
     } catch (error) {
       console.error("Error fetching bookings:", error);
-      toast.error("Failed to load bookings");
+      toast.error(`Load Failed: ${error.message || "Server Error"}`);
     } finally {
       setLoading(false);
     }
