@@ -51,6 +51,7 @@ const eventTypeOptions = [
 const PreviousWorkTab = () => {
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [dialogOpen, setDialogOpen] = useState(false);
     const [formData, setFormData] = useState({
         title: "",
@@ -142,6 +143,7 @@ const PreviousWorkTab = () => {
             return;
         }
         try {
+            setIsSubmitting(true);
             await apiClient.createPreviousWork({
                 title,
                 description: formData.description || "",
@@ -172,6 +174,8 @@ const PreviousWorkTab = () => {
         } catch (error) {
             console.error("Error adding work item:", error);
             toast.error(error.message || "Failed to add work item");
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -374,8 +378,16 @@ const PreviousWorkTab = () => {
                                         <Button
                                             type="submit"
                                             className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold h-12 rounded-xl"
+                                            disabled={isSubmitting}
                                         >
-                                            🚀 Add to Recent Projects
+                                            {isSubmitting ? (
+                                                <span className="flex items-center gap-2">
+                                                    <RefreshCw className="w-5 h-5 animate-spin" />
+                                                    🚀 Adding to Recent Projects...
+                                                </span>
+                                            ) : (
+                                                "🚀 Add to Recent Projects"
+                                            )}
                                         </Button>
                                     </form>
                                 </DialogContent>

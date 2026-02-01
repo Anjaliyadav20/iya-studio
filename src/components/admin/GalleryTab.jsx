@@ -47,6 +47,7 @@ const eventTypeOptions = [
 const GalleryTab = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
@@ -143,6 +144,7 @@ const GalleryTab = () => {
       return;
     }
     try {
+      setIsSubmitting(true);
       await apiClient.addGalleryItem({
         title,
         description: formData.description || "",
@@ -171,6 +173,8 @@ const GalleryTab = () => {
     } catch (error) {
       console.error("Error adding gallery item:", error);
       toast.error(error.message || "Failed to add gallery item");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -405,8 +409,16 @@ const GalleryTab = () => {
                     <Button
                       type="submit"
                       className="w-full bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-semibold py-2.5 transition-all hover:shadow-lg hover:shadow-pink-500/25"
+                      disabled={isSubmitting}
                     >
-                      ✨ Add Gallery Item
+                      {isSubmitting ? (
+                        <span className="flex items-center gap-2">
+                          <RefreshCw className="w-5 h-5 animate-spin" />
+                          ✨ Adding to Gallery...
+                        </span>
+                      ) : (
+                        "✨ Add Gallery Item"
+                      )}
                     </Button>
                   </form>
                 </DialogContent>
