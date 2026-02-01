@@ -37,6 +37,7 @@ const PreviousWork = () => {
                 media_urls: (item.media_urls || []).map(url => resolveLocalImage(url)),
                 thumbnail: resolveLocalImage(item.media_urls?.[0] || item.media_url)
             }));
+            console.log("Archive items loaded:", resolved.length, resolved);
             setItems(resolved);
         } catch (err) {
             console.error("Failed to load previous work:", err);

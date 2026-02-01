@@ -12,6 +12,12 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.join(__dirname, '../.env') });
 
+const uri = process.argv[2] || process.env.MONGODB_URI;
+if (!uri) {
+    console.error("❌ No MONGODB_URI found in .env or arguments");
+    process.exit(1);
+}
+
 const servicesData = [
     {
         name: "Neon Glow Tattoos",
@@ -105,7 +111,7 @@ const previousWorkData = [
 
 const seedDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGODB_URI);
+        await mongoose.connect(uri);
         console.log('📦 Connected to MongoDB');
 
         // Wipe old data

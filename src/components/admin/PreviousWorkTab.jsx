@@ -381,9 +381,12 @@ const PreviousWorkTab = () => {
                                             disabled={isSubmitting}
                                         >
                                             {isSubmitting ? (
-                                                <span className="flex items-center gap-2">
-                                                    <RefreshCw className="w-5 h-5 animate-spin" />
-                                                    🚀 Adding to Recent Projects...
+                                                <span className="flex flex-col items-center gap-1">
+                                                    <span className="flex items-center gap-2">
+                                                        <RefreshCw className="w-5 h-5 animate-spin" />
+                                                        🚀 Uploading Masterpiece...
+                                                    </span>
+                                                    <span className="text-[10px] opacity-70 font-normal">This may take a minute for large photos</span>
                                                 </span>
                                             ) : (
                                                 "🚀 Add to Recent Projects"
