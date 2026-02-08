@@ -45,4 +45,6 @@ const previousWorkSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
+previousWorkSchema.index({ createdAt: -1 });
+
 export default mongoose.model('PreviousWork', previousWorkSchema);

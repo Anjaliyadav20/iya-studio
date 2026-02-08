@@ -58,6 +58,7 @@ const GalleryTab = () => {
     is_featured: false,
     event_type: "other",
     location: "",
+    media_url: "",
   });
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [previewUrls, setPreviewUrls] = useState([]);
@@ -139,8 +140,13 @@ const GalleryTab = () => {
       toast.error("Please enter a title");
       return;
     }
-    if (!formData.media_urls || formData.media_urls.length === 0) {
-      toast.error("Please select at least one image or video");
+    const media_urls = [...formData.media_urls];
+    if (formData.media_url && formData.media_url.trim()) {
+      media_urls.push(formData.media_url.trim());
+    }
+
+    if (media_urls.length === 0) {
+      toast.error("Please select at least one image/video or paste a URL");
       return;
     }
     try {
@@ -148,7 +154,7 @@ const GalleryTab = () => {
       await apiClient.addGalleryItem({
         title,
         description: formData.description || "",
-        media_urls: formData.media_urls,
+        media_urls,
         media_type: formData.media_type,
         service_type: formData.service_type || undefined,
         is_featured: formData.is_featured,
@@ -166,6 +172,7 @@ const GalleryTab = () => {
         is_featured: false,
         event_type: "other",
         location: "",
+        media_url: "",
       });
       setSelectedFiles([]);
       setPreviewUrls([]);
@@ -413,11 +420,11 @@ const GalleryTab = () => {
                     >
                       {isSubmitting ? (
                         <span className="flex items-center gap-2">
-                          <RefreshCw className="w-5 h-5 animate-spin" />
-                          ✨ Adding to Gallery...
+                          <RefreshCw className="w-4 h-4 animate-spin" />
+                          Adding to Gallery...
                         </span>
                       ) : (
-                        "✨ Add Gallery Item"
+                        "Add to Special Gallery"
                       )}
                     </Button>
                   </form>

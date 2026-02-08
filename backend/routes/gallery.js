@@ -48,6 +48,7 @@ export const addGalleryItem = async (req, res) => {
 
     const item = new Gallery(itemData);
     await item.save();
+    console.log('✓ Gallery item added:', item.title);
 
     res.status(201).json({
       message: 'Gallery item added successfully',

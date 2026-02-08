@@ -13,7 +13,7 @@ const Navbar = () => {
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
     { href: "/gallery", label: "Gallery" },
-    { href: "/previous-work", label: "Work" },
+    { href: "/previous-work", label: "Previous Work" },
   ];
 
   return (
@@ -41,9 +41,9 @@ const Navbar = () => {
                 className="relative w-full h-full object-cover rounded-full z-10"
               />
             </motion.div>
-            <div className="hidden sm:block">
-              <span className="block text-xl font-display font-black text-white tracking-tighter leading-none group-hover:text-primary transition-colors">IYA</span>
-              <p className="text-[10px] text-primary font-body font-black uppercase tracking-[0.3em] mt-1 italic">Imprint Your Aura</p>
+            <div className="block sm:block">
+              <span className="block text-lg sm:text-xl font-display font-black text-white tracking-tighter leading-none group-hover:text-primary transition-colors">IYA</span>
+              <p className="text-[8px] sm:text-[10px] text-primary font-body font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] mt-1 italic">Imprint Your Aura</p>
             </div>
           </Link>
 
@@ -92,7 +92,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-3 rounded-2xl text-foreground bg-white/5 border border-white/10 hover:bg-primary/10 transition-colors"
+            className="lg:hidden p-3 rounded-2xl text-foreground bg-white/5 border border-white/10 hover:bg-primary/10 transition-all active:scale-95 shadow-lg"
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -103,9 +103,9 @@ const Navbar = () => {
           initial={false}
           animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
           transition={{ duration: 0.4, ease: "circOut" }}
-          className="lg:hidden overflow-hidden"
+          className="lg:hidden overflow-hidden bg-[#0a0a0a]/95 backdrop-blur-3xl rounded-3xl mb-4 border border-white/5 shadow-2xl mx-2"
         >
-          <div className="px-2 py-8 space-y-4 border-t border-white/5">
+          <div className="px-4 py-8 space-y-4">
             {links.map((link) => {
               const isActive = location.pathname === link.href;
               return (
@@ -113,7 +113,7 @@ const Navbar = () => {
                   key={link.href}
                   to={link.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block px-6 py-4 text-xs font-black uppercase tracking-[0.2em] rounded-2xl transition-all ${isActive ? 'bg-primary/10 text-primary' : 'text-muted-foreground bg-white/5 hover:bg-primary/10 hover:text-primary'}`}
+                  className={`block px-6 py-4 text-xs font-black uppercase tracking-[0.2em] rounded-2xl transition-all ${isActive ? 'bg-primary/10 text-primary border border-primary/20' : 'text-muted-foreground bg-white/5 hover:bg-primary/10 hover:text-primary border border-transparent'}`}
                 >
                   {link.label}
                 </Link>
@@ -121,10 +121,10 @@ const Navbar = () => {
             })}
             <div className="grid grid-cols-2 gap-4 mt-6">
               <Link to="/auth" onClick={() => setIsOpen(false)}>
-                <Button variant="outline" className="w-full h-15 rounded-2xl text-[10px] font-black uppercase tracking-widest border-primary/40 text-primary">Admin Panel</Button>
+                <Button variant="outline" className="w-full h-14 rounded-2xl text-[10px] font-black uppercase tracking-widest border-primary/40 text-primary hover:bg-primary/5">Admin Panel</Button>
               </Link>
               <Link to="/contact" onClick={() => setIsOpen(false)}>
-                <Button className="w-full h-15 rounded-2xl text-[10px] font-black uppercase tracking-widest bg-primary text-black">Book Now</Button>
+                <Button className="w-full h-14 rounded-2xl text-[10px] font-black uppercase tracking-widest bg-primary text-black hover:scale-[1.02] transition-transform shadow-lg shadow-primary/20">Book Now</Button>
               </Link>
             </div>
           </div>

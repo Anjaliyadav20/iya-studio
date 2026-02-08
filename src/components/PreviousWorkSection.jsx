@@ -175,13 +175,13 @@ const PreviousWorkSection = () => {
 
         {/* Modal for Details */}
         <Dialog open={!!selected} onOpenChange={() => setSelected(null)}>
-          <DialogContent className="max-w-5xl bg-card/95 backdrop-blur-xl border-primary/20">
+          <DialogContent className="max-w-5xl w-[98vw] h-[92vh] md:w-auto md:h-auto overflow-y-auto bg-card/95 backdrop-blur-xl border-primary/20 p-6 md:p-8 rounded-[2.5rem] md:rounded-3xl">
             <DialogHeader>
-              <DialogTitle className="font-display text-3xl">{selected?.title}</DialogTitle>
+              <DialogTitle className="font-display text-2xl md:text-3xl">{selected?.title}</DialogTitle>
             </DialogHeader>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start mt-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-start mt-4">
               {/* Media Carousel */}
-              <div className="relative aspect-square lg:aspect-auto lg:h-[600px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+              <div className="relative aspect-[4/5] lg:aspect-auto lg:h-[600px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
                 {selected?.media_type === 'video' ? (
                   <video
                     src={selected.media_urls?.[currentImageIndex] || selected.media_url}
@@ -232,7 +232,7 @@ const PreviousWorkSection = () => {
                   )}
                 </div>
 
-                <div className="space-y-6 flex-grow">
+                <div className="space-y-4 md:space-y-6 flex-grow">
                   <div>
                     <h4 className="text-white/60 font-body text-sm uppercase tracking-wider mb-2">About this project</h4>
                     <p className="text-lg text-muted-foreground leading-relaxed font-body">
@@ -254,7 +254,7 @@ const PreviousWorkSection = () => {
                   </div>
                 </div>
 
-                <div className="mt-12 flex gap-4">
+                <div className="mt-8 md:mt-12 flex flex-col md:flex-row gap-4">
                   <Button variant="outline" size="lg" className="flex-1 rounded-xl" onClick={() => setSelected(null)}>Close View</Button>
                   <Link to="/contact" className="flex-1">
                     <Button size="lg" className="w-full rounded-xl bg-gradient-to-r from-primary to-accent text-black font-bold">Book Similar Work</Button>

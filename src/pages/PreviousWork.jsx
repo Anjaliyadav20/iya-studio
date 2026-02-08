@@ -27,6 +27,7 @@ const PreviousWork = () => {
     const [loading, setLoading] = useState(true);
     const [selected, setSelected] = useState(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [hoveredId, setHoveredId] = useState(null);
 
     const fetchWork = async () => {
         setLoading(true);
@@ -96,6 +97,8 @@ const PreviousWork = () => {
                                 >
                                     <div
                                         className="h-full bg-card/20 backdrop-blur-sm border border-white/5 rounded-2xl overflow-hidden hover:border-primary/40 hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.1)] transition-all duration-500 cursor-pointer flex flex-col"
+                                        onMouseEnter={() => setHoveredId(it._id || it.id || idx)}
+                                        onMouseLeave={() => setHoveredId(null)}
                                         onClick={() => {
                                             setSelected(it);
                                             setCurrentImageIndex(0);
@@ -109,13 +112,16 @@ const PreviousWork = () => {
                                                     muted
                                                     loop
                                                     playsInline
-                                                    autoPlay
+                                                    autoPlay={hoveredId === (it._id || it.id || idx)}
+                                                    loading="lazy"
                                                 />
                                             ) : (
                                                 <img
                                                     src={it.thumbnail}
                                                     alt={it.title}
                                                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                                                    loading="lazy"
+                                                    decoding="async"
                                                 />
                                             )}
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
@@ -166,11 +172,11 @@ const PreviousWork = () => {
                     )}
 
                     <Dialog open={!!selected} onOpenChange={() => setSelected(null)}>
-                        <DialogContent className="max-w-6xl w-[95vw] h-[90vh] md:h-auto md:max-h-[85vh] p-0 overflow-hidden bg-background/95 backdrop-blur-2xl border-white/10 rounded-3xl gap-0 shadow-2xl">
+                        <DialogContent className="max-w-6xl w-[98vw] h-[92vh] md:w-[95vw] md:h-auto md:max-h-[85vh] p-0 overflow-hidden bg-background/95 backdrop-blur-2xl border-white/10 rounded-[2.5rem] md:rounded-3xl gap-0 shadow-2xl">
                             <div className="flex flex-col lg:flex-row w-full h-full lg:h-[80vh]">
 
                                 {/* Left Side: Media Hero (60%) */}
-                                <div className="relative w-full lg:w-3/5 h-[50vh] lg:h-full bg-black flex items-center justify-center group/panel">
+                                <div className="relative w-full lg:w-3/5 h-[45vh] lg:h-full bg-black flex items-center justify-center group/panel">
                                     <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
                                         <AnimatePresence mode="wait">
                                             <motion.div
@@ -230,7 +236,7 @@ const PreviousWork = () => {
                                 </div>
 
                                 {/* Right Side: Content Panel (40%) */}
-                                <div className="w-full lg:w-2/5 p-8 md:p-12 flex flex-col bg-card/30 relative overflow-y-auto">
+                                <div className="w-full lg:w-2/5 p-6 md:p-12 flex flex-col bg-card/30 relative overflow-y-auto">
                                     {/* Desktop Close Button */}
                                     <button
                                         onClick={() => setSelected(null)}
@@ -254,12 +260,12 @@ const PreviousWork = () => {
                                                 </span>
                                             )}
                                         </div>
-                                        <h2 className="font-display text-3xl md:text-4xl text-foreground leading-[1.1] tracking-tight">
+                                        <h2 className="font-display text-2xl md:text-4xl text-foreground leading-[1.1] tracking-tight">
                                             {selected?.title}
                                         </h2>
                                     </div>
 
-                                    <div className="space-y-6 flex-grow">
+                                    <div className="space-y-4 md:space-y-6 flex-grow">
                                         <div className="space-y-2">
                                             <div className="flex items-center gap-2 text-xs font-black text-primary uppercase tracking-[0.2em]">
                                                 <Info className="w-3 h-3" />
@@ -270,7 +276,7 @@ const PreviousWork = () => {
                                             </p>
                                         </div>
 
-                                        <div className="flex flex-col gap-4 pt-4">
+                                        <div className="flex flex-col gap-4 pt-2 md:pt-4">
                                             <div className="flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/5">
                                                 <div className="flex items-center gap-3">
                                                     <Calendar className="w-5 h-5 text-primary" />
@@ -283,7 +289,7 @@ const PreviousWork = () => {
                                         </div>
                                     </div>
 
-                                    <div className="mt-12">
+                                    <div className="mt-8 md:mt-12">
                                         <Button
                                             className="w-full bg-primary hover:bg-primary/90 text-white font-bold h-12 rounded-2xl shadow-lg shadow-primary/20 transition-all uppercase tracking-widest text-[10px]"
                                             onClick={() => setSelected(null)}

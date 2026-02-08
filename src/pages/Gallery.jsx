@@ -151,6 +151,7 @@ const GalleryItem = ({ item, index }) => {
                 e.target.currentTime = 0.1;
               }}
               onError={() => setImageError(true)}
+              loading="lazy"
             />
           ) : (
             <img
@@ -158,6 +159,8 @@ const GalleryItem = ({ item, index }) => {
               alt={item.title}
               className={`w-full object-cover transition-transform duration-1000 group-hover:scale-110 ${imageError ? 'opacity-20' : ''}`}
               onError={() => setImageError(true)}
+              loading="lazy"
+              decoding="async"
             />
           )}
 

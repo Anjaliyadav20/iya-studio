@@ -35,6 +35,7 @@ export const createService = async (req, res) => {
       is_active: is_active !== false,
     });
     await service.save();
+    console.log('✓ Service created:', service.name);
     res.status(201).json({ message: 'Service created successfully', service });
   } catch (error) {
     console.error('Create service error:', error);
