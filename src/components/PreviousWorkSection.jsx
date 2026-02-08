@@ -5,6 +5,7 @@ import { apiClient } from "@/services/api";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { MapPin, Calendar, FileText, Play, ArrowRight, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import { resolveLocalImage } from "@/data/services";
 import { format } from "date-fns";
@@ -73,9 +74,16 @@ const PreviousWorkSection = () => {
         </motion.div>
 
         {loading ? (
-          <div className="py-20 text-center">
-            <div className="inline-block w-8 h-8 border-4 border-primary/20 border-t-primary rounded-full animate-spin mb-4" />
-            <p className="text-muted-foreground">Loading gallery...</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="rounded-3xl border border-white/10 overflow-hidden">
+                <Skeleton className="aspect-square w-full" />
+                <div className="p-6 space-y-3">
+                  <Skeleton className="h-8 w-3/4" />
+                  <Skeleton className="h-12 w-full" />
+                </div>
+              </div>
+            ))}
           </div>
         ) : items.length === 0 ? (
           <Card variant="neon" className="p-16 text-center bg-card/40 backdrop-blur-md">
@@ -111,6 +119,7 @@ const PreviousWorkSection = () => {
                         className="w-full h-full object-cover"
                         muted
                         playsInline
+                        loading="lazy"
                       />
                       <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors">
                         <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
@@ -123,6 +132,8 @@ const PreviousWorkSection = () => {
                       src={it.thumbnail}
                       alt={it.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
+                      decoding="async"
                     />
                   )}
 

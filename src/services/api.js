@@ -3,19 +3,31 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? '/ap
 class APIClient {
   constructor() {
     this.token = localStorage.getItem('auth_token');
+    this.cache = new Map();
   }
 
   setToken(token) {
     this.token = token;
     localStorage.setItem('auth_token', token);
+    this.cache.clear(); // Clear cache on login/token change
   }
 
   removeToken() {
     this.token = null;
     localStorage.removeItem('auth_token');
+    this.cache.clear(); // Clear cache on logout
   }
 
   async request(endpoint, options = {}) {
+    // Only cache GET requests
+    const isGet = !options.method || options.method === 'GET';
+    const cacheKey = `${endpoint}-${JSON.stringify(options.params || {})}`;
+
+    if (isGet && this.cache.has(cacheKey)) {
+      console.log(`[API Cache] Returning cached data for ${endpoint}`);
+      return this.cache.get(cacheKey);
+    }
+
     const headers = {
       'Content-Type': 'application/json',
       ...options.headers,
@@ -43,7 +55,14 @@ class APIClient {
       }
 
       if (response.status === 204) return null;
-      return await response.json();
+      const data = await response.json();
+
+      // Store in cache if it's a GET request
+      if (isGet) {
+        this.cache.set(cacheKey, data);
+      }
+
+      return data;
     } catch (error) {
       console.error('API Error:', error);
       throw error;

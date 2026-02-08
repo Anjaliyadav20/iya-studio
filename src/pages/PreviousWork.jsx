@@ -4,6 +4,7 @@ import { apiClient } from "@/services/api";
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { MapPin, Calendar, Play, ChevronLeft, ChevronRight, Sparkles, X, Info } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -71,15 +72,17 @@ const PreviousWork = () => {
                     </motion.div>
 
                     {loading ? (
-                        <div className="py-32 text-center">
-                            <motion.div
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                                className="inline-block"
-                            >
-                                <Sparkles className="w-8 h-8 text-primary" />
-                            </motion.div>
-                            <p className="mt-4 text-muted-foreground font-display tracking-widest uppercase text-[10px]">Filtering Magic...</p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                            {[...Array(8)].map((_, i) => (
+                                <div key={i} className="rounded-2xl border border-white/5 overflow-hidden">
+                                    <Skeleton className="aspect-[4/5] w-full" />
+                                    <div className="p-5 space-y-3">
+                                        <Skeleton className="h-6 w-3/4" />
+                                        <Skeleton className="h-4 w-full" />
+                                        <Skeleton className="h-4 w-1/2" />
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     ) : items.length === 0 ? (
                         <Card variant="neon" className="p-16 text-center bg-card/40 backdrop-blur-xl border-white/5 max-w-2xl mx-auto">
