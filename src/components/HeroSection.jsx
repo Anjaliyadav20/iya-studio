@@ -35,8 +35,8 @@ const HeroSection = () => {
     <section className="relative min-h-screen flex items-center overflow-hidden pt-24 bg-[#0a0a0a] text-foreground">
 
       {/* Background Decorative Blurs - Premium Glows */}
-      <div className="fixed top-[-10%] right-[-5%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[80px] pointer-events-none opacity-40 z-0" />
-      <div className="fixed bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[70px] pointer-events-none opacity-30 z-0" />
+      <div className="fixed top-[-10%] right-[-5%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[80px] pointer-events-none opacity-40 z-0 overflow-hidden" />
+      <div className="fixed bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[70px] pointer-events-none opacity-30 z-0 overflow-hidden" />
 
       {/* Subtle Mesh Grid Backdrop */}
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none z-0" />
@@ -157,34 +157,36 @@ const HeroSection = () => {
                 {/* SLIDER OVERLAY GRADIENT */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60" />
 
-                {/* CONTROLS - Repositioned & Polished */}
-                <div className="absolute inset-x-8 bottom-10 flex items-center justify-between z-20">
-                  <button
-                    onClick={goPrev}
-                    className="w-14 h-14 rounded-full bg-black/40 backdrop-blur-2xl border border-white/10 flex items-center justify-center hover:bg-primary hover:text-black transition-all group/btn"
-                  >
-                    <ChevronLeft className="w-6 h-6 text-white group-hover/btn:text-black" />
-                  </button>
+                {/* CONTROLS - Redesigned & Minimalist */}
+                <div className="absolute inset-x-0 bottom-8 flex items-center justify-center z-20 pointer-events-none">
+                  <div className="flex items-center gap-1 p-1 rounded-2xl bg-black/40 backdrop-blur-3xl border border-white/5 shadow-2xl pointer-events-auto">
+                    <button
+                      onClick={goPrev}
+                      className="w-10 h-10 rounded-xl flex items-center justify-center text-white/50 hover:text-primary hover:bg-white/5 transition-all active:scale-90"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
 
-                  <div className="flex gap-3 px-6 py-3 rounded-full bg-black/40 backdrop-blur-2xl border border-white/5">
-                    {SLIDER_IMAGES.map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setSlideIndex(i)}
-                        className={`h-1.5 rounded-full transition-all duration-500 ${i === slideIndex
-                          ? "bg-primary w-8"
-                          : "bg-white/20 w-1.5 hover:bg-white/50"
-                          }`}
-                      />
-                    ))}
+                    <div className="flex gap-2 px-4">
+                      {SLIDER_IMAGES.map((_, i) => (
+                        <button
+                          key={i}
+                          onClick={() => setSlideIndex(i)}
+                          className={`h-1 rounded-full transition-all duration-500 ${i === slideIndex
+                            ? "bg-primary w-6"
+                            : "bg-white/10 w-1 hover:bg-white/30"
+                            }`}
+                        />
+                      ))}
+                    </div>
+
+                    <button
+                      onClick={goNext}
+                      className="w-10 h-10 rounded-xl flex items-center justify-center text-white/50 hover:text-primary hover:bg-white/5 transition-all active:scale-90"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
                   </div>
-
-                  <button
-                    onClick={goNext}
-                    className="w-14 h-14 rounded-full bg-black/40 backdrop-blur-2xl border border-white/10 flex items-center justify-center hover:bg-primary hover:text-black transition-all group/btn"
-                  >
-                    <ChevronRight className="w-6 h-6 text-white group-hover/btn:text-black" />
-                  </button>
                 </div>
 
                 {/* Floating Label */}

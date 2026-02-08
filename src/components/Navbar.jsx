@@ -20,19 +20,19 @@ const Navbar = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-40 w-full bg-[#0a0a0a]/70 backdrop-blur-2xl border-b border-primary/20 shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
+      className="fixed top-0 left-0 right-0 z-50 w-full bg-[#0a0a0a]/70 backdrop-blur-3xl border-b border-primary/20 shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
     >
       {/* Decorative Glow Line */}
       <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-50" />
 
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-24">
+        <div className="flex items-center justify-between h-20 md:h-24">
 
           {/* Logo Section */}
           <Link to="/" className="flex items-center gap-4 group">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0 border border-primary/40 p-0.5 bg-black"
+              className="relative w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden flex-shrink-0 border border-primary/40 p-0.5 bg-black"
             >
               <div className="absolute inset-0 bg-primary/20 blur-md group-hover:bg-primary/40 transition-all duration-500" />
               <img

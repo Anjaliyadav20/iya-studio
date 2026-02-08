@@ -43,10 +43,10 @@ const Services = () => {
       <Navbar />
 
       {/* Background Decorative Blur */}
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[120px] pointer-events-none opacity-40 z-0" />
-      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none opacity-30 z-0" />
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[120px] pointer-events-none opacity-40 z-0 overflow-hidden" />
+      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none opacity-30 z-0 overflow-hidden" />
 
-      <main className="relative z-10 pt-24 pb-16 overflow-x-hidden">
+      <main className="relative z-10 pt-32 md:pt-40 pb-16 overflow-x-hidden">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
