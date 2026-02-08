@@ -119,12 +119,12 @@ const Navbar = () => {
                 </Link>
               );
             })}
-            <div className="grid grid-cols-2 gap-4 mt-6">
-              <Link to="/auth" onClick={() => setIsOpen(false)}>
-                <Button variant="outline" className="w-full h-14 rounded-2xl text-[10px] font-black uppercase tracking-widest border-primary/40 text-primary hover:bg-primary/5">Admin Panel</Button>
-              </Link>
+            <div className="flex flex-col gap-4 mt-6">
               <Link to="/contact" onClick={() => setIsOpen(false)}>
-                <Button className="w-full h-14 rounded-2xl text-[10px] font-black uppercase tracking-widest bg-primary text-black hover:scale-[1.02] transition-transform shadow-lg shadow-primary/20">Book Now</Button>
+                <Button className="w-full h-14 rounded-2xl text-xs font-black uppercase tracking-widest bg-primary text-black hover:scale-[1.02] transition-transform shadow-lg shadow-primary/20">Book Session Now</Button>
+              </Link>
+              <Link to="/auth" onClick={() => setIsOpen(false)}>
+                <Button variant="outline" className="w-full h-14 rounded-2xl text-xs font-black uppercase tracking-widest border-primary bg-primary/5 text-primary hover:bg-primary/10 shadow-lg shadow-primary/5">Admin Panel Access</Button>
               </Link>
             </div>
           </div>
