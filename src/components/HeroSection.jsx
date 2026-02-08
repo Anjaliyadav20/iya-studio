@@ -35,8 +35,8 @@ const HeroSection = () => {
     <section className="relative min-h-screen flex items-center overflow-hidden pt-24 bg-[#0a0a0a] text-foreground">
 
       {/* Background Decorative Blurs - Premium Glows */}
-      <div className="fixed top-[-10%] right-[-5%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[80px] pointer-events-none opacity-40 z-0 overflow-hidden" />
-      <div className="fixed bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[70px] pointer-events-none opacity-30 z-0 overflow-hidden" />
+      <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[80px] pointer-events-none opacity-40 z-0" />
+      <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[70px] pointer-events-none opacity-30 z-0" />
 
       {/* Subtle Mesh Grid Backdrop */}
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none z-0" />
@@ -157,7 +157,7 @@ const HeroSection = () => {
                 {/* SLIDER OVERLAY GRADIENT */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60" />
 
-                {/* CONTROLS - Redesigned & Minimalist */}
+                {/* CONTROLS - Minimalist (Arrows Only) */}
                 <div className="absolute inset-x-0 bottom-8 flex items-center justify-center z-20 pointer-events-none">
                   <div className="flex items-center gap-1 p-1 rounded-2xl bg-black/40 backdrop-blur-3xl border border-white/5 shadow-2xl pointer-events-auto">
                     <button
@@ -167,18 +167,7 @@ const HeroSection = () => {
                       <ChevronLeft className="w-5 h-5" />
                     </button>
 
-                    <div className="flex gap-2 px-4">
-                      {SLIDER_IMAGES.map((_, i) => (
-                        <button
-                          key={i}
-                          onClick={() => setSlideIndex(i)}
-                          className={`h-1 rounded-full transition-all duration-500 ${i === slideIndex
-                            ? "bg-primary w-6"
-                            : "bg-white/10 w-1 hover:bg-white/30"
-                            }`}
-                        />
-                      ))}
-                    </div>
+                    <div className="w-px h-4 bg-white/10 mx-1" />
 
                     <button
                       onClick={goNext}
@@ -189,12 +178,7 @@ const HeroSection = () => {
                   </div>
                 </div>
 
-                {/* Floating Label */}
-                <div className="absolute top-10 right-10 flex flex-col items-end">
-                  <div className="px-4 py-2 rounded-xl bg-black/60 backdrop-blur-xl border border-white/10 text-[9px] font-black uppercase tracking-widest text-primary">
-                    Featured Look
-                  </div>
-                </div>
+
               </div>
             </div>
           </div>
