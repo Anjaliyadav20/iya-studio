@@ -175,7 +175,7 @@ const PreviousWorkSection = () => {
 
         {/* Modal for Details */}
         <Dialog open={!!selected} onOpenChange={() => setSelected(null)}>
-          <DialogContent className="max-w-5xl w-[98vw] h-[92vh] md:w-auto md:h-auto overflow-y-auto bg-card/95 backdrop-blur-xl border-primary/20 p-6 md:p-8 rounded-[2.5rem] md:rounded-3xl">
+          <DialogContent className="max-w-5xl w-full h-[100dvh] md:w-auto md:h-auto overflow-y-auto bg-background md:bg-card/95 md:backdrop-blur-xl border-none md:border-primary/20 p-6 md:p-8 rounded-none md:rounded-3xl z-[60]">
             <DialogHeader>
               <DialogTitle className="font-display text-2xl md:text-3xl">{selected?.title}</DialogTitle>
             </DialogHeader>

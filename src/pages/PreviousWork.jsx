@@ -172,11 +172,11 @@ const PreviousWork = () => {
                     )}
 
                     <Dialog open={!!selected} onOpenChange={() => setSelected(null)}>
-                        <DialogContent className="max-w-6xl w-[98vw] h-[92vh] md:w-[95vw] md:h-auto md:max-h-[85vh] p-0 overflow-hidden bg-background/95 backdrop-blur-2xl border-white/10 rounded-[2.5rem] md:rounded-3xl gap-0 shadow-2xl">
+                        <DialogContent className="max-w-6xl w-full h-[100dvh] md:w-[95vw] md:h-auto md:max-h-[85vh] p-0 overflow-y-auto bg-background md:bg-background/95 md:backdrop-blur-2xl border-none md:border-white/10 rounded-none md:rounded-3xl gap-0 shadow-2xl z-[60]">
                             <div className="flex flex-col lg:flex-row w-full h-full lg:h-[80vh]">
 
                                 {/* Left Side: Media Hero (60%) */}
-                                <div className="relative w-full lg:w-3/5 h-[45vh] lg:h-full bg-black flex items-center justify-center group/panel">
+                                <div className="relative w-full lg:w-3/5 h-auto min-h-[40vh] lg:h-full bg-black flex items-center justify-center group/panel">
                                     <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
                                         <AnimatePresence mode="wait">
                                             <motion.div
@@ -226,17 +226,17 @@ const PreviousWork = () => {
                                         </>
                                     )}
 
-                                    {/* Mobile Close Button */}
+                                    {/* Mobile Close Button - Repositioned to be visible */}
                                     <button
                                         onClick={() => setSelected(null)}
-                                        className="lg:hidden absolute top-4 right-4 bg-black/60 backdrop-blur-md p-2 rounded-full text-white border border-white/10"
+                                        className="lg:hidden absolute top-6 right-6 z-50 bg-black/60 backdrop-blur-md p-2 rounded-full text-white border border-white/10"
                                     >
                                         <X className="w-5 h-5" />
                                     </button>
                                 </div>
 
                                 {/* Right Side: Content Panel (40%) */}
-                                <div className="w-full lg:w-2/5 p-6 md:p-12 flex flex-col bg-card/30 relative overflow-y-auto">
+                                <div className="w-full lg:w-2/5 p-6 md:p-12 flex flex-col bg-card/30 relative">
                                     {/* Desktop Close Button */}
                                     <button
                                         onClick={() => setSelected(null)}

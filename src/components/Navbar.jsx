@@ -20,7 +20,7 @@ const Navbar = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-[100] w-full bg-[#0a0a0a]/70 backdrop-blur-2xl border-b border-primary/20 shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
+      className="fixed top-0 left-0 right-0 z-40 w-full bg-[#0a0a0a]/70 backdrop-blur-2xl border-b border-primary/20 shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
     >
       {/* Decorative Glow Line */}
       <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-50" />
