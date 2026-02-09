@@ -32,7 +32,7 @@ const HeroSection = () => {
     setSlideIndex((i) => (i + 1) % SLIDER_IMAGES.length);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-24 bg-[#0a0a0a] text-foreground">
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-20 lg:pt-24 bg-[#0a0a0a] text-foreground">
 
       {/* Background Decorative Blurs - Premium Glows */}
       <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[80px] pointer-events-none opacity-40 z-0" />
@@ -41,11 +41,11 @@ const HeroSection = () => {
       {/* Subtle Mesh Grid Backdrop */}
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none z-0" />
 
-      <div className="relative z-10 container mx-auto px-4 py-12">
+      <div className="relative z-10 container mx-auto px-4 py-8 lg:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center min-h-[calc(100vh-12rem)]">
 
           {/* LEFT CONTENT */}
-          <div className="text-center lg:text-left">
+          <div className="text-center lg:text-left order-2 lg:order-1">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -101,7 +101,7 @@ const HeroSection = () => {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="h-16 w-full px-16 border-primary rounded-2xl bg-black/40 backdrop-blur-xl font-black uppercase tracking-widest text-[10px] hover:bg-primary/5 transition-all hover:border-primary group flex items-center justify-center gap-3 text-primary shadow-[0_0_20px_rgba(var(--primary-rgb),0.1)] active:scale-95"
+                    className="h-16 w-full px-16 border-primary rounded-2xl bg-black/40 backdrop-blur-xl font-black uppercase tracking-widest text-[10px] hover:bg-primary/5 transition-all hover:border-primary group flex items-center justify-center gap-3 text-primary shadow-[0_0_20_rgba(var(--primary-rgb),0.1)] active:scale-95"
                   >
                     <LayoutGrid className="w-4 h-4" />
                     Our Works
@@ -134,7 +134,7 @@ const HeroSection = () => {
           </div>
 
           {/* RIGHT SLIDER - High End Frame */}
-          <div className="relative">
+          <div className="relative order-1 lg:order-2">
             <div className="relative aspect-[4/5] md:aspect-[5/6] max-h-[700px] w-full mx-auto">
               {/* Decorative border elements */}
               <div className="absolute -inset-1 bg-gradient-to-tr from-primary/20 via-transparent to-secondary/20 rounded-[3rem] blur-xl opacity-50" />
