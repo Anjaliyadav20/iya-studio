@@ -158,7 +158,7 @@ const HeroSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60" />
 
                 {/* CONTROLS - Minimalist (Arrows Only) */}
-                <div className="absolute inset-x-0 bottom-8 flex items-center justify-center z-20 pointer-events-none">
+                <div className="absolute inset-x-0 bottom-8 hidden lg:flex items-center justify-center z-20 pointer-events-none">
                   <div className="flex items-center gap-1 p-1 rounded-2xl bg-black/40 backdrop-blur-3xl border border-white/5 shadow-2xl pointer-events-auto">
                     <button
                       onClick={goPrev}
